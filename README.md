@@ -4,19 +4,19 @@ Python-Petsc implementation of some basic FEM discretization (mesh/assembly/selv
 Python package **MyFEM**
 Include modules:
 
-###Mesh
+### Mesh
 
 - Class **RectUniTri** creates simple uniform triangulation on rectangle. (nodes, elements, edges, dictionaries of boundary nodes/edges (left,right,...))
  
-###ProblemSetting
+### ProblemSetting
 
 - Class **ProblemInputData** encapsulates Mesh class, contains additional parameters of the problem like boundary conditions, right hand side and material.
 
-###Assembly
+### Assembly
 
 - Class **LaplaceSteady** encapsulates ProblemSetting class, contains methods for assembling matrices and right hadn side of the problem
 
-###Solvers
+### Solvers
 
 - Class **LaplaceSteady** encapsulates Assembly class, contains different instaces of PETSc ksp solvers
  
