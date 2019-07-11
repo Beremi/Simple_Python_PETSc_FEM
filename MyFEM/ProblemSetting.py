@@ -14,7 +14,7 @@ from MyFEM import Mesh
 class ProblemInputData:
     """ """
 
-    def __init__(self, geometry=Mesh.RectMesh()):
+    def __init__(self, geometry=Mesh.RectUniTri()):
         self.geometry = geometry
         self.dirichlet_boundary = None
         self.neumann_boundary = None
