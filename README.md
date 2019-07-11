@@ -10,7 +10,7 @@ Include modules:
  
 ### ProblemSetting
 
-- Class **ProblemInputData** encapsulates Mesh class, contains additional parameters of the problem like boundary conditions, right hand side and material.
+- Class **BoundaryValueProblem2D** encapsulates Mesh class, contains additional parameters of the problem like boundary conditions, right hand side and material.
 
 ### Assembly
 

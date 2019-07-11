@@ -55,10 +55,10 @@ class RectUniTri:
 
     Examples
     --------
-    >>> grid = RectUniTri()  # default 10x10 grid on 1x1 rectangle
-    >>> grid = RectUniTri(h_elem=5,w_elem=6,height=2,width=3)  # custom 5x6 grid on 2x3 rectangle
-    >>> grid.remesh(h_elem=5,w_elem=6,height=2,width=3)  # remesh to given rectangle
-    >>> grid.plot()  # show grid with numbering
+    >>> grid1 = RectUniTri()  # default 10x10 grid on 1x1 rectangle
+    >>> grid2 = RectUniTri(h_elem=5,w_elem=6,height=2,width=3)  # custom 5x6 grid on 2x3 rectangle
+    >>> grid2.remesh(h_elem=5,w_elem=6,height=2,width=3)  # remesh to given rectangle
+    >>> grid2.plot()  # show grid with numbering
     """
 
     def __init__(self, h_elem=10, w_elem=10, height=1, width=1):
@@ -74,7 +74,9 @@ class RectUniTri:
         self.remesh(h_elem, w_elem, height, width)
 
     def plot(self):
-        """ """
+        """
+        Plots the triangulation and its numbering.
+        """
         plt.triplot(self.nodes[:, 0], self.nodes[:, 1], self.elems)
         plt.plot(self.nodes[:, 0], self.nodes[:, 1], 'o')
 
@@ -94,17 +96,22 @@ class RectUniTri:
 
     def remesh(self, h_elem=10, w_elem=10, height=1, width=1):
         """
-        
+        Change mesh of the object.
+
         Parameters
         ----------
-        h_elem :
+        h_elem : int
             (Default value = 10)
-        w_elem :
+            Number of elements in vertical direction.
+        w_elem : int
             (Default value = 10)
-        height :
+            Number of elements in horizontal direction.
+        height : float
             (Default value = 1)
-        width :
+            Vertical size of the rectangle.
+        width : float
             (Default value = 1)
+            Horizontal size of the rectangle.
 
         Returns
         -------

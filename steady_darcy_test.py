@@ -18,7 +18,7 @@ n = 40
 my_mesh = Mesh.RectUniTri(n, n)
 
 # PROBLEM SETTING (BOUNDARY + MAT + RHS) --------------------------------------
-my_problem = ProblemSetting.ProblemInputData(my_mesh)  # init ProblemSetting obj
+my_problem = ProblemSetting.BoundaryValueProblem2D(my_mesh)  # init ProblemSetting obj
 # dirichlet condition setting
 dirichlet_boundary = ["right",
                       ["left", [0.5, 1]]]  # select boundary
