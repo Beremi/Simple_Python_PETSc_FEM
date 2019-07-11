@@ -42,7 +42,7 @@ class LaplaceSteady:
         self.times_assembly["ksp_cg_" + pc_type] = duration
         return
     
-    def ksp_direct_type(self, solver_type='umfpack',factor_type='lu'):
+    def ksp_direct_type(self, solver_type: str = 'umfpack', factor_type: str = 'lu') -> None:
         """ Possible types: umfpack,lu,mumps """
         start = time.time()
         if self.solution == None:

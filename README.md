@@ -6,7 +6,7 @@ Include modules:
 
 ###Mesh
 
-- Class **RectMesh** creates simple uniform triangulation on rectangle. (nodes, elements, edges, dictionaries of boundary nodes/edges (left,right,...))
+- Class **RectUniTri** creates simple uniform triangulation on rectangle. (nodes, elements, edges, dictionaries of boundary nodes/edges (left,right,...))
  
 ###ProblemSetting
 
