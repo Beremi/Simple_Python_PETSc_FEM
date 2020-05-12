@@ -84,3 +84,28 @@ class LaplaceSteady:
         plt.gca().invert_yaxis()
         plt.show()
         return
+
+    def calculate_window_flow(self):
+        """ Calculate flow through boundary Dirichlet windows (using weak form).
+        M : petsc4py.PETSc.Mat
+            Generalized matrix.
+        pressure : petsc4py.PETSc.Vec
+            Solution of steady Darcy flow problem.
+        dirichlet_boundary : Dict
+            Dictionary containing 'idx' with value of list of sub-lists of nodes indexes and 'values' with value of list of
+            sub-lists of corresponding values on Dirichlet nodes. 
+        """
+        M = self.assembled_matrices.matrices['A']
+        pressure = self.solution
+        dirichlet_boundary = self.assembled_matrices.problem_setting.dirichlet_boundary
+        idx = dirichlet_boundary['idx'] # list containing int32 arrays with indices of nodes in Dirichlet windows
+        no_windows = len(idx) # int (number of Dirichlet windows)
+        self.window_flow = [None] * no_windows # list of scalars (flow through Dirichlet windows)
+        t = M * pressure
+        multiplicity = 0 * pressure
+        for i in range(no_windows):
+            multiplicity[idx[i]] += 1
+        for i in range(no_windows):
+            # correction (preserves zero total flow, allows touching windows)
+            tmp = t[idx[i]] / multiplicity[idx[i]]
+            self.window_flow[i] = tmp.sum()
