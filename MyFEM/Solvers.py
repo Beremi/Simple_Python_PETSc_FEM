@@ -25,7 +25,7 @@ class LaplaceSteady:
         self.solution = self.assembled_matrices.create_vec()
         return
 
-    def ksp_cg_with_pc(self, pc_type='none'):
+    def ksp_cg_with_pc(self, pc_type: str = 'none', tolerance: float = None) -> None:
         """ Possible preconditioners: ilu, jacobi,sor,... """
         start = time.time()
         if self.solution == None:
@@ -34,6 +34,9 @@ class LaplaceSteady:
         self.ksp = PETSc.KSP().create()
         self.ksp.setOperators(self.assembled_matrices.matrices["A_dirichlet"])
         self.ksp.setType('cg')
+        if tolerance is not None:
+            v = self.ksp.getTolerances()
+            self.ksp.setTolerances(tolerance,v[1],v[2],v[3])
         pc = self.ksp.getPC()
         pc.setType(pc_type)
         self.ksp.setFromOptions()

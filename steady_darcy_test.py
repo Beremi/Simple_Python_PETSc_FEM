@@ -14,7 +14,7 @@ petsc4py.init()
 
 
 # TRIANGULAR MESH SETTING -----------------------------------------------------
-n = 50
+n = 200
 my_mesh = Mesh.RectUniTri(n, n)
 
 # PROBLEM SETTING (BOUNDARY + MAT + RHS) --------------------------------------
@@ -59,16 +59,16 @@ print(FEM_assembly.times_assembly)
 # SOLVING using KSP ----------------------------------------------------------
 my_solver = Solvers.LaplaceSteady(FEM_assembly)  # init
 
-#my_solver.ksp_direct_type('umfpack')
-#my_solver.ksp_direct_type('mumps')
-#my_solver.ksp_direct_type('klu')
-#my_solver.ksp_direct_type('cholmod','cholesky')
+my_solver.ksp_direct_type('umfpack')
+my_solver.ksp_direct_type('mumps')
+my_solver.ksp_direct_type('klu')
+my_solver.ksp_direct_type('cholmod','cholesky')
 my_solver.ksp_direct_type('petsc')
-#my_solver.ksp_cg_with_pc('none')
-#my_solver.ksp_cg_with_pc('ilu')
-#my_solver.ksp_cg_with_pc('jacobi')
-#my_solver.ksp_cg_with_pc('sor')
-#my_solver.ksp_cg_with_pc('icc')
+my_solver.ksp_cg_with_pc('none')
+my_solver.ksp_cg_with_pc('ilu')
+my_solver.ksp_cg_with_pc('jacobi')
+my_solver.ksp_cg_with_pc('sor')
+my_solver.ksp_cg_with_pc('icc')
 
 if n <= 30:
     my_solver.plot_solution()  # triplot the solution
@@ -77,5 +77,5 @@ else:
 
 print(my_solver.times_assembly)
 
-window_flow = my_solver.calculate_boundary_flow()
-print(window_flow, sum(window_flow))
+#window_flow = my_solver.calculate_boundary_flow()
+#print(window_flow, sum(window_flow))
